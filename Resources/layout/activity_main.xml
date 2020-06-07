@@ -53,4 +53,16 @@
         app:layout_constraintTop_toBottomOf="@+id/image"
         app:layout_constraintVertical_bias="0.828" />
 
+    <Button
+        android:id="@+id/select_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="画像選択"
+        app:layout_constraintBottom_toTopOf="@+id/image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.92" />
+
 </android.support.constraint.ConstraintLayout>
