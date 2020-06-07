@@ -12,11 +12,7 @@ namespace ImageProcBrightnessXamarinDroid
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
-        private ImageView   mImageView;
         private Bitmap      mBitmap;
-        private Button      mBtnReset;
-        private SeekBar     mSeekBarAlpha;
-        private TextView    mTextViewAlphaValue;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -36,16 +32,13 @@ namespace ImageProcBrightnessXamarinDroid
 
         private void InitLayout()
         {
-            mImageView = (ImageView)FindViewById(Resource.Id.image);
             mBitmap = BitmapFactory.DecodeResource(Resources, Resource.Drawable.dog);
 
-            mBtnReset = (Button)FindViewById(Resource.Id.reset);
-            mBtnReset.Click += OnClickBtnReset;
+            var btnReset = (Button)FindViewById(Resource.Id.reset);
+            btnReset.Click += OnClickBtnReset;
 
-            mSeekBarAlpha = (SeekBar)FindViewById(Resource.Id.alpha_seekBar);
-            mSeekBarAlpha.ProgressChanged += new EventHandler<SeekBar.ProgressChangedEventArgs>(OnProgressChanged);
-
-            mTextViewAlphaValue = (TextView)FindViewById(Resource.Id.alpha_value);
+            var seekBarAlpha = (SeekBar)FindViewById(Resource.Id.alpha_seekBar);
+            seekBarAlpha.ProgressChanged += new EventHandler<SeekBar.ProgressChangedEventArgs>(OnProgressChanged);
         }
 
         /// <summary>
@@ -55,7 +48,8 @@ namespace ImageProcBrightnessXamarinDroid
         /// <param name="e">イベントのデータ</param>
         private void OnClickBtnReset(object s, EventArgs e)
         {
-            mImageView.SetImageBitmap(mBitmap);
+            var imageView = (ImageView)FindViewById(Resource.Id.image);
+            imageView?.SetImageBitmap(mBitmap);
         }
 
         /// <summary>
@@ -65,10 +59,12 @@ namespace ImageProcBrightnessXamarinDroid
         /// <param name="e">イベントのデータ</param>
         private async void OnProgressChanged(object s, SeekBar.ProgressChangedEventArgs e)
         {
-            mTextViewAlphaValue.Text = e.Progress.ToString() + " %";
+            var textViewAlphaValue = (TextView)FindViewById(Resource.Id.alpha_value);
+            textViewAlphaValue.Text = e.Progress.ToString() + " %";
             var brightness = new Brightness();
             var mutableBitmap = await Task.Run(() => brightness.goImageProcessing(mBitmap, e.Progress));
-            mImageView.SetImageBitmap(mutableBitmap.Copy(Bitmap.Config.Argb8888, false));
+            var imageView = (ImageView)FindViewById(Resource.Id.image);
+            imageView.SetImageBitmap(mutableBitmap.Copy(Bitmap.Config.Argb8888, false));
         }
     }
 }
