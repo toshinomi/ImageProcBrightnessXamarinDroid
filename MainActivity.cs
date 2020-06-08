@@ -68,6 +68,9 @@ namespace ImageProcBrightnessXamarinDroid
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
+        /// <summary>
+        /// レイアウトの初期設定
+        /// </summary>
         private void InitLayout()
         {
             mBitmap = BitmapFactory.DecodeResource(Resources, Resource.Drawable.dog);
