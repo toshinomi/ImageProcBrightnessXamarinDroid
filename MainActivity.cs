@@ -106,7 +106,7 @@ namespace ImageProcBrightnessXamarinDroid
             var textViewAlphaValue = (TextView)FindViewById(Resource.Id.alpha_value);
             textViewAlphaValue.Text = e.Progress.ToString() + " %";
             var brightness = new Brightness();
-            var mutableBitmap = await Task.Run(() => brightness.goImageProcessing(mBitmap, e.Progress));
+            var mutableBitmap = await Task.Run(() => brightness.GoImageProcessing(mBitmap, e.Progress));
             var imageView = (ImageView)FindViewById(Resource.Id.image);
             imageView.SetImageBitmap(mutableBitmap.Copy(Bitmap.Config.Argb8888, false));
         }

@@ -32,7 +32,7 @@ class Brightness
     /// </summary>
     /// <param name="image">ビットマップ</param>
     /// <returns>グレースケール後のビットマップ</returns>
-    public Bitmap goImageProcessing(Bitmap bitmap, int alpha)
+    public Bitmap GoImageProcessing(Bitmap bitmap, int alpha)
     {
         var pixels = new int[bitmap.Width * bitmap.Height];
         var resultPixels = new int[bitmap.Width * bitmap.Height];
